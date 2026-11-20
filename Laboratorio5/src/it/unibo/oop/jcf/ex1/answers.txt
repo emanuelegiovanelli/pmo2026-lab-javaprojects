@@ -1,0 +1,8 @@
+Questions:
+1) If we use `var` instead of specifying Collection<Integer> what type will `coll` have?
+
+Answers:
+1) La variabile di riferimento "coll" avrà come tipo statico ArrayList<Object>.
+Infatti utilizzando la parola riservata "var", il compilatore deve inferire il tipo della variabile dall'espressione di inizializzazione.
+Inoltre, utilizzando l'operatore diamond (<>), non viene specificato alcun argomento di tipo.
+Non avendo altri vincoli che permettano un'inferenza più specifica, il compilatore inferisce Object come argomento di tipo.
