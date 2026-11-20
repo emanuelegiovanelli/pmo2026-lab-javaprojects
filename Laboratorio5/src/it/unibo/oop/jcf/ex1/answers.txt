@@ -1,8 +1,16 @@
 Questions:
 1) If we use `var` instead of specifying Collection<Integer> what type will `coll` have?
+2) try to write a for-each cycle iterating over TreeSet (which, internally, generates and uses an Iterator), and within the cycle try to remove an nelement from the TreeSet. What happens?
 
 Answers:
 1) La variabile di riferimento "coll" avrà come tipo statico ArrayList<Object>.
 Infatti utilizzando la parola riservata "var", il compilatore deve inferire il tipo della variabile dall'espressione di inizializzazione.
 Inoltre, utilizzando l'operatore diamond (<>), non viene specificato alcun argomento di tipo.
 Non avendo altri vincoli che permettano un'inferenza più specifica, il compilatore inferisce Object come argomento di tipo.
+
+2) Se impiego un ciclo for esteso per attraversare gli elementi di una collection come TreeSet e, contestualmente, cerco di modificare la struttura stessa viene sollevata un'eccezione durante l'esecuzione del programma.
+In particolare CuncurrentModificationException.
+Questo accade perché il ciclo for-each utilizza internamente un Iterator.
+E in Java l'iteratore si aspetta che la sorgente dalla quale si itera non subisca modifiche strutturali esterne durante l'iterazione.
+Una modifica di questo tipo infatti potrebbe lasciare l'iteratore in uno stato incoerente, compromettendo l'attraversamento degli elementi.
+
