@@ -39,6 +39,10 @@ public class ProductImpl implements Product{
 		ProductImpl other = (ProductImpl) obj;
 		return Objects.equals(name, other.name);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "ProductImpl [name=" + name + ", quantity=" + quantity + "]";
+	}
 	
 }
