@@ -2,6 +2,8 @@ package it.unibo.oop.jcf.ex5;
 
 import java.util.Collection;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  *
@@ -20,7 +22,11 @@ public final class Utilities {
      * @return a new set that is the union of the input sets.
      */
     public static <X> Set<X> setUnion(final Set<? extends X> setA, final Set<? extends X> setB) {
-        return null;
+    	Set<X> union = new HashSet<>();
+    	union.addAll(setA);
+    	union.addAll(setB);
+    	
+        return union;
     }
 
     /**
@@ -33,7 +39,12 @@ public final class Utilities {
      * @return a new set that is the intersection of the input sets.
      */
     public static <X> Set<X> setIntersection(final Set<? extends X> setA, final Set<? extends X> setB) {
-        return null;
+    	Set<X> intersection = new HashSet<>();
+    	
+    	intersection.addAll(setA);
+    	intersection.retainAll(setB);
+    	
+    	return intersection;
     }
 
     /**
@@ -46,7 +57,11 @@ public final class Utilities {
      * @return a new set that is the symmetric difference of the input sets.
      */
     public static <X> Set<X> setSymmetricDifference(final Set<? extends X> setA, final Set<? extends X> setB) {
-        return null;
+        Set<X> symmetricDifference = Utilities.setUnion(setA, setB);
+        
+        symmetricDifference.removeAll(Utilities.setIntersection(setA, setB));
+        
+    	return symmetricDifference;
     }
 
     /**
@@ -58,7 +73,17 @@ public final class Utilities {
      *
      */
     public static <X> X getRandomElement(final Collection<X> coll) {
-        return null;
+    	Iterator<X> it = coll.iterator();
+    	int index = (int) (Math.random() * coll.size()); 
+    	X element = null;
+    	
+    	for (int i = 0; i < index; i++) {
+    		it.next();
+    	}
+    	
+    	element = it.next();
+    	
+        return element;
     }
 
     /**
@@ -73,6 +98,9 @@ public final class Utilities {
      * @return a pair with two random elements
      */
     public static <X, Y> Pair<X, Y> getRandomPair(final Collection<X> first, final Collection<Y> second) {
-        return null;
+    	X firstElement = Utilities.getRandomElement(first);
+    	Y secondElement = Utilities.getRandomElement(second);
+    	    	
+        return new Pair<>(firstElement, secondElement);
     }
 }
